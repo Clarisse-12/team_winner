@@ -297,4 +297,15 @@ Before you finish, the Reporter fills in this table as a comment block at the to
 
 ---
 
+The answers:
+
+- In phase one  writing Authorization: Basic YWRtaW46YWRtaW4xMjM= by hand is the moment it clicks. Postman's "Basic Auth" tab feels like a security feature — you type a username and password into labeled fields. REST Client reveals it's just concatenating username:password, Base64-encoding the result, and dropping it into a header. Base64 is not encryption; it's formatting. Postman was never protecting you, it was just saving you the typing. The Phase 3 and 4 headers (Token ..., Bearer ...) are also instructive, but those are just opaque strings — Phase 1 is the one where you see your actual password hiding one decode away from plaintext.
+
+- We would choose JWT method for mobile offline because JWT bakes the user's identity and expiry into the token itself and signs it cryptographically, so a server (or even a local service worker) can verify it with just the secret key.
+
+- JWT, but the honest answer is "none of them, without HTTPS. In nowdays we need another layer which enforce security in modern applications.
+---
+Team Cotribution Sheet: https://docs.google.com/spreadsheets/d/1ffQhm8g6QE_KYB6DGlsF2iQNTcFCMD0ey3GE4XBRg00/edit?usp=sharing
+---
+
 *Good luck — and remember: if your transport layer is unencrypted, your entire authentication architecture is a complete illusion.*

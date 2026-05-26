@@ -78,6 +78,17 @@ def token_auth_view(request):
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PHASE 4 — JSON Web Tokens (JWT)
+# Q1 answer (fields found in the decoded payload):
+# user_id ("1") identifies the user; exp is the expiry timestamp; also present: iat, jti, token_type.
+
+# Q2 answer (what happens when the signature is tampered):
+# The server recomputes the HMAC-SHA256 signature using its SECRET_KEY and rejects
+# any token whose signature doesn't match — no database lookup needed.
+
+# Synthesis answer (JWT revocation challenge and workaround):
+# Because JWTs are stateless, revoking one requires a server-side blocklist of jti
+# values — unlike opaque tokens which are simply deleted from the database.
+
 # ─────────────────────────────────────────────────────────────────────────────
 
 @api_view(["GET"])

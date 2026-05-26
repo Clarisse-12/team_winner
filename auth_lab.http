@@ -55,7 +55,8 @@ Content-Type: application/json
 
 ### Phase 4 — JWT Protected Request
 GET http://127.0.0.1:8000/api/jwt/protected/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc5ODEyMDU2LCJpYXQiOjE3Nzk4MTAyNTYsImp0aSI6IjJiMDAwZjBhMGQ2MjRiZTJiMWJhNGRlNjIyNmMzMmRmIiwidXNlcl9pZCI6IjEifQ.CuXCIt90IezYzAKGD-RTZ5mxVCrQbMCOBnaj01j4erI
+Authorization: Bearer {{jwtLogin.response.body.access}}
+
 
 ###
 
@@ -81,5 +82,7 @@ Content-Type: application/json
 # signature in the token's third segment no longer matches the tampered
 # payload. The server recomputes the signature with its SECRET_KEY and
 # the two values don't match, proving the token was modified.
+### Phase 4 — Synthesis: Tampered JWT
 GET http://127.0.0.1:8000/api/jwt/protected/ HTTP/1.1
-Authorization: Bearer <PASTE_TAMPERED_TOKEN_HERE>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc5ODI2NzMxLCJpYXQiOjE3Nzk4MjQ5MzEsImp0aSI6IjkzYTY3NDE3MmJmMzQxZTlhZWQ4MzNiNWYwZTQ5MzE3IiwidXNlcl9pZCI6IjEifQ.VKsLgH8_q-xDiv1iSX1n8-aRecMJH-vuSvvgY_l5V-X
+

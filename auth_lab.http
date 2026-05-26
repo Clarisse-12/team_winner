@@ -32,7 +32,7 @@ Authorization: Basic YWRtaW46YWRtaW4xMjM=
 ### ═══════════════════════════════════════════════════════════════════════════
 ### PHASE 3 — Token Authentication (Opaque)
 ### ═══════════════════════════════════════════════════════════════════════════
-### Phase 3 — Opaque Token Auth (valid)
+### Phase 3 — Opaque Token Auth (valids)
 GET http://127.0.0.1:8000/api/token/ HTTP/1.1
 Authorization: Token c6b044787ebbbe6a6d019aae6de8d58d36238966
 

@@ -31,13 +31,11 @@ from rest_framework.response import Response
 @authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def basic_auth_view(request):
-    # Extract the raw Authorization header and print it to the terminal.
-    # Hint: the header key in request.META is 'HTTP_AUTHORIZATION'.
     auth_header = request.META.get('HTTP_AUTHORIZATION')
     print(f"Incoming Header: {auth_header}")
 
     # Reporter — Phase 1 challenge answers:
-    # Q1 answer (header format for admin:admin123): admin:admin123
+    # Q1 answer (header format for admin:admin123): admin:admin123 which is username:password format.
     # Q2 answer (what happens without credentials): Request will be rejected
     # with 401 Unauthorized; over plain HTTP the header is sent in the clear
     # (Base64 is not encryption), so credentials can be intercepted.
@@ -54,8 +52,10 @@ def basic_auth_view(request):
 @permission_classes([IsAuthenticated])
 def session_auth_view(request):
     # Reporter — Phase 2 challenge answers:
-    # Q1 answer (effect of deleting the session cookie):
-    # Synthesis answer (how session fixation works):
+    # Q1 answer (effect of deleting the session cookie):# Deleting the `sessionid` cookie logs the user out because the browser
+        #no longer sends the session identifier to the server.
+    # Synthesis answer (how session fixation works): # Re-adding the original `sessionid` cookie restores access because the
+        #server-side session record still exists and matches the restored cookie value.
 
     return Response({"message": "Session authenticated.", "user": request.user.username})
 

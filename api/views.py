@@ -56,7 +56,17 @@ def basic_auth_view(request):
 def session_auth_view(request):
     # Reporter — Phase 2 challenge answers:
     # Q1 answer (effect of deleting the session cookie):
+    # When the `sessionid` cookie is deleted from the browser, the browser stops sending the session key 
+    # with requests. As a result, the server (Django) cannot link the request to any record in its 
+    # server-side session database (django_session), causing the user to be logged out. The session 
+    # record still exists on the server, but the browser has lost its pointer to it.
+    #
     # Synthesis answer (how session fixation works):
+    # Manually re-adding the original `sessionid` cookie logs the user back in instantly, demonstrating that 
+    # session authentication relies entirely on the browser presenting a valid session key, enabling session hijacking 
+    # if stolen. In a session fixation attack, an attacker forces or "fixes" a known session ID in the victim's 
+    # browser before they log in. Once the victim logs in, that fixed session ID becomes authenticated, allowing 
+    # the attacker (who already knows the fixed ID) to hijack the active session and bypass authentication.
 
     return Response({"message": "Session authenticated.", "user": request.user.username})
 

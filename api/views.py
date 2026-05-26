@@ -31,19 +31,18 @@ from rest_framework.response import Response
 @authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def basic_auth_view(request):
-    # ── Driver Task ───────────────────────────────────────────────────────────
-    # TODO: Extract the raw Authorization header from request.META and print
-    #       it to the terminal with a descriptive label.
-    #       Then return: Response({"message": "Check your terminal!"})
-    #
+    # Extract the raw Authorization header and print it to the terminal.
     # Hint: the header key in request.META is 'HTTP_AUTHORIZATION'.
-    # ─────────────────────────────────────────────────────────────────────────
+    auth_header = request.META.get('HTTP_AUTHORIZATION')
+    print(f"Incoming Header: {auth_header}")
 
     # Reporter — Phase 1 challenge answers:
-    # Q1 answer (header format for admin:admin123):
-    # Q2 answer (what happens without credentials):
+    # Q1 answer (header format for admin:admin123): admin:admin123
+    # Q2 answer (what happens without credentials): Request will be rejected
+    # with 401 Unauthorized; over plain HTTP the header is sent in the clear
+    # (Base64 is not encryption), so credentials can be intercepted.
 
-    return Response({"message": "Phase 1 stub — Driver: complete the TODO above."})
+    return Response({"message": "Check your terminal!"})
 
 
 # ─────────────────────────────────────────────────────────────────────────────

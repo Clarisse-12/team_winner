@@ -32,10 +32,19 @@ Authorization: Basic YWRtaW46YWRtaW4xMjM=
 ### ═══════════════════════════════════════════════════════════════════════════
 ### PHASE 3 — Token Authentication (Opaque)
 ### ═══════════════════════════════════════════════════════════════════════════
-# TODO: Generate a DRF token for the admin user first (see lab README).
-# TODO: Find the Token Auth endpoint in api/urls.py.
-# TODO: Write a GET request that sends the token using the
-#       Authorization: Token <your-token> header.
+### Phase 3 — Opaque Token Auth (valid)
+GET http://127.0.0.1:8000/api/token/ HTTP/1.1
+Authorization: Token c6b044787ebbbe6a6d019aae6de8d58d36238966
+
+###
+
+### Phase 3 — Tampered Token (last char changed 6 → 7)
+GET http://127.0.0.1:8000/api/token/ HTTP/1.1
+Authorization: Token c6b044787ebbbe6a6d019aae6de8d58d36238967
+
+### Phase 3 — Synthesis: Replay attack with opaque token
+# A stolen opaque token can be replayed indefinitely until deleted from the DB.
+# Unlike JWT, there is no expiry — only a manual database deletion revokes it.
 
 
 
